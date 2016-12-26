@@ -19,12 +19,16 @@
             </ul>
         </div>
         <div class="floatRight user">
-            <div class="userLogin" v-if="">
+            <div class="userLogin" v-if="isLogin==0?true:false">
                 <a href="/user/login">登录</a><i>|</i><a href="/user/reg">注册</a>
             </div>
-            <div class="userName" v-if="isLogin">
-                <ul>
-
+            <div class="userName" v-if="isLogin==1?true:false">
+                <a href="http://www.baofengcloud.com/reconciliation/lists" target="_blank">{{userName}}</a>
+                <ul class="userDetail">
+                    <li class="userAccount clear">
+                        <div class="floatLeft userIcon"></div>
+                        <div class="floatLeft userMsg"></div>
+                    </li>
                 </ul>
             </div>
             <div class="manager"><a href="http://www.baofengcloud.com/user/mainpanel"><i></i>管理中心</a></div>
@@ -96,6 +100,13 @@ module.exports={
             ]
         }
     },
-    props:["myMessage","isLogin"]
+    props:{
+        myMessage:Number,
+        isLogin:Number,
+        userName:String,
+        userType:String,
+        userAccount:Number,
+        unreadData:true,
+    }
 };
 </script>

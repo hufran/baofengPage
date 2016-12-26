@@ -152,5 +152,18 @@ h1{
 }
 .user .userName:hover{
     background: #3d97ec;
-
+}
+.user .userName .userDetail{
+    padding:0 15px;
+}
+.user .userAccount{
+    background: rgba(0,0,0,0.85);
+    font-size: 12px;
+    word-break: keep-all;
+}
+.user .userAccount .userIcon{
+    background: url("../images/icon.png") no-repeat 0 -245px;
+    display: block;
+    width:52px;
+    height:56px;
 }
