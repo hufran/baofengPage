@@ -19,19 +19,29 @@
             </ul>
         </div>
         <div class="floatRight user">
-            <div class="userLogin" v-if="isLogin==0?true:false">
+            <div class="userLogin floatLeft" v-if="isLogin==0?true:false">
                 <a href="/user/login">登录</a><i>|</i><a href="/user/reg">注册</a>
             </div>
-            <div class="userName" v-if="isLogin==1?true:false">
-                <a href="http://www.baofengcloud.com/reconciliation/lists" target="_blank">{{userName}}</a>
+            <div class="userName floatLeft" v-if="isLogin==1?true:false">
+                <a href="http://www.baofengcloud.com/reconciliation/lists" target="_blank">{{userData.name}}</a>
                 <ul class="userDetail">
                     <li class="userAccount clear">
-                        <div class="floatLeft userIcon"></div>
-                        <div class="floatLeft userMsg"></div>
+                        <div class="userIcon"></div>
+                        <div class="userMsg">
+                            <p>{{userData.name}}</p>
+                            <p>类型：{{userData.type}}</p>
+                            <p>余额：{{userData.account}}</p>
+                        </div>
+                    </li>
+                    <li class="clear unread">
+                        <i></i><a href="#">未读消息<em></em></a>
+                    </li>
+                    <li class="clear logout">
+                        <i></i><a href="#">退出登录</a>
                     </li>
                 </ul>
             </div>
-            <div class="manager"><a href="http://www.baofengcloud.com/user/mainpanel"><i></i>管理中心</a></div>
+            <div class="manager floatLeft"><a href="http://www.baofengcloud.com/user/mainpanel"><i></i><span>管理中心</span></a></div>
         </div>
     </div>
 </template>
@@ -103,10 +113,7 @@ module.exports={
     props:{
         myMessage:Number,
         isLogin:Number,
-        userName:String,
-        userType:String,
-        userAccount:Number,
-        unreadData:true,
+        userData:Object
     }
 };
 </script>

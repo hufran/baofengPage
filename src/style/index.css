@@ -38,7 +38,7 @@ h1{
 }
 .clear:after{
     display: block;
-    content: normal;
+    content: '';
     width:100%;
     clear:both;
     overflow:hidden;
@@ -131,7 +131,7 @@ h1{
     font-size: 14px;
     color:#fff;
 }
-.user .manager a,.user .manager i{
+.user .manager i,.user .manager span{
     display: table-cell;
     line-height: 65px;
 }
@@ -141,6 +141,10 @@ h1{
     height:16px;
     background: url("../images/icon.png") no-repeat -189px 25px;
 }
+.user .userLogin{
+    line-height:65px;
+    margin-right:35px;
+}
 .user .userLogin i{
     padding:0 9px;
     font-style: normal;
@@ -149,21 +153,62 @@ h1{
 .user .userName{
     margin-right: 5px;
     line-height: 65px;
+    position: relative;
+    width: 90px;
+    text-align: center;
 }
 .user .userName:hover{
     background: #3d97ec;
 }
 .user .userName .userDetail{
     padding:0 15px;
+    position: absolute;
+    right:0px;
+    z-index: 3;
 }
 .user .userAccount{
     background: rgba(0,0,0,0.85);
     font-size: 12px;
     word-break: keep-all;
+    width:170px;
+    border:0;
+}
+.user .userAccount p{
+    line-height: 20px;
 }
 .user .userAccount .userIcon{
     background: url("../images/icon.png") no-repeat 0 -245px;
-    display: block;
+    display:table-cell;
     width:52px;
     height:56px;
+}
+.user .userAccount  .userMsg{
+    display: table-cell;
+
+}
+.user .userDetail li{
+    background: #000;
+    border-top:1px solid #4a4f52;
+    line-height: 28px;
+}
+.user .userDetail li:hover{
+    background: #3d97ec;
+    font-size: 14px;
+}
+.user .userDetail .unread{
+    display: block;
+    padding:15px 20px;
+    position: relative;
+}
+.user .unread i{
+    background:url("../images/icon.png") no-repeat -190px -118px;
+    width:33px;
+    height: 27px;
+}
+.user .unread em{
+    background:url("../images/icon.png") no-repeat -327px -118px;
+    width:12px;
+    height:12px;
+    position: absolute;
+    right:0px;
 }
