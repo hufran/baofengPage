@@ -1,6 +1,6 @@
 *{
     margin:0;
-    padding:0px;
+    padding:0;
     font-size: 100%;
     font-family: "Microsoft Yahei", "宋体", Arial, Verdana;
 }
@@ -15,14 +15,14 @@ a{
 }
 ul,ul li{
     list-style-type: none;
-    padding:0px;
+    padding:0;
 }
 h1,h2,h3,h4{
     font-weight: 400;
 }
 h1{
     width: 100%;
-    height: 0px;
+    height: 0;
     overflow: hidden;
     text-indent: -9899em;
 
@@ -52,13 +52,13 @@ h1{
 }
 .container{
     width:1200px;
-    margin:0px auto;
+    margin:0 auto;
 }
 .logo{
     width:232px;
     margin-top:12px;
     margin-right: 65px;
-    background:url("../images/icon.png") no-repeat 0px -620px;
+    background:url("../images/icon.png") no-repeat 0 -620px;
 }
 .logo a{
     display:block;
@@ -68,9 +68,9 @@ h1{
     height:41px;
 }
 .nav{
-    line-height: 65px;
+    line-height: 62px;
     display: block;
-    width:560px;
+    width:565px;
 }
 #navBar li{
     float:left;
@@ -79,19 +79,23 @@ h1{
 #navBar li.cur{
     display: block;
     line-height:62px;
-    border:3px solid #3d97ec;
+    border-bottom:3px solid #3d97ec;
 }
 #navBar li a{
-    padding:0px 15px;
+    padding:0 15px;
 }
 #navBar li .navBar_second{
     display: none;
     background: rgba(0,0,0,0.9);
     position: absolute;
     top: 66px;
-    left:0px;
-    padding:15px 25px;
+    left:0;
+    padding:15px 0 15px 25px;
     z-index: 2;
+}
+#navBar li:hover{
+    line-height:62px;
+    border-bottom:3px solid #3d97ec;
 }
 #navBar li:hover .navBar_second{
     display: block;
@@ -99,7 +103,10 @@ h1{
 #navBar li .navBar_Group{
     padding-right: 25px;
     font-size:14px;
-    float: left;
+    display: table-cell;
+}
+#navBar li .navBar_Group p{
+    line-height: 25px;
 }
 #navBar li .navBar_Group ul{
     display: block;
@@ -110,12 +117,40 @@ h1{
     line-height: 42px;
 }
 #navBar li .navBar_Group ul li a{
-    padding:0px;
+    padding:0;
 }
 #navBar li .navBar_Group.bor{
+    padding-left:25px;
     border-left:1px solid #2e3032;
 }
 #navBar li:hover .navBar_Group p{
-    color:#888888;
+    color:#888;
     font-size: 12px;
+}
+.user{
+    font-size: 14px;
+    color:#fff;
+}
+.user .manager a,.user .manager i{
+    display: table-cell;
+    line-height: 65px;
+}
+.user .manager i{
+    padding-right: 6px;
+    width:20px;
+    height:16px;
+    background: url("../images/icon.png") no-repeat -189px 25px;
+}
+.user .userLogin i{
+    padding:0 9px;
+    font-style: normal;
+    font-size: 16px;
+}
+.user .userName{
+    margin-right: 5px;
+    line-height: 65px;
+}
+.user .userName:hover{
+    background: #3d97ec;
+
 }
