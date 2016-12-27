@@ -34,10 +34,10 @@
                         </div>
                     </li>
                     <li class="clear unread">
-                        <i></i><a href="#">未读消息<em></em></a>
+                        <i></i><a href="http://www.baofengcloud.com/pm/lists">未读消息<em></em></a>
                     </li>
                     <li class="clear logout">
-                        <i></i><a href="#">退出登录</a>
+                        <i></i><a href="/user/logout">退出登录</a>
                     </li>
                 </ul>
             </div>

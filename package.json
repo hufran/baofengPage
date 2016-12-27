@@ -28,6 +28,7 @@
     "chromedriver": "^2.21.2",
     "connect-history-api-fallback": "^1.1.0",
     "cross-spawn": "^2.1.5",
+    "css-loader": "^0.23.0",
     "eslint": "^2.10.2",
     "eslint-config-standard": "^5.1.0",
     "eslint-friendly-formatter": "^2.0.5",
@@ -63,17 +64,17 @@
     "shelljs": "^0.6.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
+    "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.3.0",
     "vue-style-loader": "^1.0.0",
+    "vue-touch": "^1.1.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.6.0",
-    "webpack-merge": "^0.8.3",
-    "css-loader": "^0.23.0",
-    "style-loader": "^0.13.0"
+    "webpack-merge": "^0.8.3"
   }
 }
