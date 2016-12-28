@@ -807,7 +807,7 @@ width:100%;
     position: absolute;
     left:70px;
     bottom:37px;
-    background: url("../images/oneWebsite.png") no-repeat 0 0; z-index;
+    background: url("../images/oneWebsite.png") no-repeat 0 0;
     width:910px;
     height:432px;
     opacity:1;
@@ -828,3 +828,24 @@ width:100%;
     text-align: right;
     margin-right: 18px;
 }
+/*videoContain*/
+#videoContain{
+    height: 508px;
+    display: block;
+    background: url("../images/about_bac.png") repeat-y center center;
+    background-size:cover;
+}
+#videoContain h3{
+    text-indent: -9999em;
+    background: url("../images/icon.png") no-repeat 333px -402px;
+    line-height: 32px;
+    margin-bottom:24px;
+    padding-top:30px;
+}
+#videoContain .videoArea{
+    margin: 0px auto;
+    width:717px;
+    height:400px;
+}
+
+/*foot*/
