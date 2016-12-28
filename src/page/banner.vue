@@ -7,7 +7,7 @@
                     <h2>{{data.title}}</h2>
                     <div class="describe">{{data.describe}}</div>
                     <div v-if="data.animate" class="snowAnimate">
-                        <span v-for="list in snowList" v-bind:class="list.class" v-bind:style="{left:list.posX,top:list.posY}"></span>
+                        <span v-for="list in snowList" v-bind:class="list.class" v-bind:style="{left:list.posX}"></span>
                     </div>
                     <div v-bind:class="data.btnClass"><a v-bind:href="data.link">{{data.btn}}<i></i></a></div>
                 </div>
@@ -47,25 +47,23 @@
 
             },
             randomPos:function(){
-
-                function randomVal(){
-                    var current=Math.ceil(Math.random()*100);
-                    if(current>45){
-                        return (-current);
+                function randomPox(){
+                    var width=parseInt($('body').width());
+                    var current=Math.ceil(Math.random()*width);
+                    if(current>-45&&current<(width-45)){
+                        return current;
                     }else{
-                        current=Math.ceil(Math.random()*100);
+                        randomPox();
                     }
                 }
                 if(this.snowList.length==0){
-                    var classList=["snowItem1","snowItem2","snowItem3","snowItem4","snowItem5","snowItem6","snowItem7","snowItem8","snowItem9","snowItem10","snowItem11","snowItem12","snowItem13","snowItem14","snowItem15"],len=70;
+                    var classList=["snowItem1","snowItem2","snowItem3","snowItem4","snowItem5","snowItem6","snowItem7","snowItem8","snowItem9","snowItem10","snowItem11","snowItem12","snowItem13","snowItem14","snowItem15"],len=30;
                     for(var i=0;i<len;i++){
                         var dataItem={};
                         dataItem.class=classList[Math.ceil(Math.random()*(classList.length-1))];
                         dataItem.posX=Math.ceil(Math.random()*parseInt($('body').width()))+"px";
-                        dataItem.posY=randomVal()+"px";
                         this.snowList.push(dataItem);
                     }
-                    console.log(this.snowList);
                 }else{
                     return;
                 }

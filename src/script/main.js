@@ -5,14 +5,16 @@ webpackJsonp([0,1],[
 	var Vue=__webpack_require__(1);
 	var Head=__webpack_require__(3);
 	var banner=__webpack_require__(6);
-	var VueTouch = __webpack_require__(11);
+	var contentList=__webpack_require__(11);
+	var mainList=__webpack_require__(14);
+	var VueTouch = __webpack_require__(17);
 	Vue.use(VueTouch);
 	new Vue({
 		el: 'body',
-		components: { lead:Head ,banner:banner}
+		components: { lead:Head ,banner:banner,contentList:contentList,mainList:mainList}
 	});
 
-	var comp=__webpack_require__(13);
+	var comp=__webpack_require__(19);
 	comp.computeWidth();
 
 
@@ -10390,26 +10392,24 @@ webpackJsonp([0,1],[
 	        scrollPos: function scrollPos(pos) {},
 	        autoScroll: function autoScroll(pos) {},
 	        randomPos: function randomPos() {
-
-	            function randomVal() {
-	                var current = Math.ceil(Math.random() * 100);
-	                if (current > 45) {
-	                    return -current;
+	            function randomPox() {
+	                var width = parseInt($('body').width());
+	                var current = Math.ceil(Math.random() * width);
+	                if (current > -45 && current < width - 45) {
+	                    return current;
 	                } else {
-	                    current = Math.ceil(Math.random() * 100);
+	                    randomPox();
 	                }
 	            }
 	            if (this.snowList.length == 0) {
 	                var classList = ["snowItem1", "snowItem2", "snowItem3", "snowItem4", "snowItem5", "snowItem6", "snowItem7", "snowItem8", "snowItem9", "snowItem10", "snowItem11", "snowItem12", "snowItem13", "snowItem14", "snowItem15"],
-	                    len = 70;
+	                    len = 30;
 	                for (var i = 0; i < len; i++) {
 	                    var dataItem = {};
 	                    dataItem.class = classList[Math.ceil(Math.random() * (classList.length - 1))];
 	                    dataItem.posX = Math.ceil(Math.random() * parseInt($('body').width())) + "px";
-	                    dataItem.posY = randomVal() + "px";
 	                    this.snowList.push(dataItem);
 	                }
-	                console.log(this.snowList);
 	            } else {
 	                return;
 	            }
@@ -10437,17 +10437,113 @@ webpackJsonp([0,1],[
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"bannerChange\">\n    {{randomPos()}}\n    <ul class=\"bannerGroup\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:swipeleft=\"scrollLeft\" v-touch:swiperight=\"scrollRight\" v-bind:class=\"data.classList\" >\n            <div class=\"container\">\n                <h2>{{data.title}}</h2>\n                <div class=\"describe\">{{data.describe}}</div>\n                <div v-if=\"data.animate\" class=\"snowAnimate\">\n                    <span v-for=\"list in snowList\" v-bind:class=\"list.class\" v-bind:style=\"{left:list.posX,top:list.posY}\"></span>\n                </div>\n                <div v-bind:class=\"data.btnClass\"><a v-bind:href=\"data.link\">{{data.btn}}<i></i></a></div>\n            </div>\n        </li>\n    </ul>\n    <ul class=\"pointGroup container\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:tap=\"scrollPos\" v-bind:class=\"{cur:data.classList.cur,mrg0:(index==bannerData.length-1)?true:false}\"></li>\n    </ul>\n</div>\n\n";
+	module.exports = "\n<div class=\"bannerChange\">\n    {{randomPos()}}\n    <ul class=\"bannerGroup\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:swipeleft=\"scrollLeft\" v-touch:swiperight=\"scrollRight\" v-bind:class=\"data.classList\" >\n            <div class=\"container\">\n                <h2>{{data.title}}</h2>\n                <div class=\"describe\">{{data.describe}}</div>\n                <div v-if=\"data.animate\" class=\"snowAnimate\">\n                    <span v-for=\"list in snowList\" v-bind:class=\"list.class\" v-bind:style=\"{left:list.posX}\"></span>\n                </div>\n                <div v-bind:class=\"data.btnClass\"><a v-bind:href=\"data.link\">{{data.btn}}<i></i></a></div>\n            </div>\n        </li>\n    </ul>\n    <ul class=\"pointGroup container\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:tap=\"scrollPos\" v-bind:class=\"{cur:data.classList.cur,mrg0:(index==bannerData.length-1)?true:false}\"></li>\n    </ul>\n</div>\n\n";
 
 /***/ },
 /* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(12)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src\\page\\contentList.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(13)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "./contentList.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	    data: function data() {
+	        return {
+	            detailList: [{ "name": "点播服务", css: { covBac1: true, covPic: true }, "intro": "点播服务是一套成熟的多操作系统、多屏、多种播放模式、多清晰度的一站式点播解决方案......", classList: { detailList_icon: true, bac1: true }, btn: "查看详情", link: "http://www.baofengcloud.com/product/saas.html" }, { "name": "直播服务", css: { covBac2: true, covPic: true }, "intro": "直播服务是一套成熟的多操作系统、多屏、多种播放模式的高清大型直播解决方案。直播可以同时承载百万人同时......", classList: { detailList_icon: true, bac2: true }, btn: "查看详情", link: "http://www.baofengcloud.com/product/live.html" }, { "name": "视频云托管", css: { covBac3: true, covPic: true }, "intro": "视频云托管是针对类似移动端视频快速分享业务提供的一套视频点播方案，有机结合了云存储、云转码和CDN系统......", classList: { detailList_icon: true, bac3: true }, btn: "查看详情", link: "http://www.baofengcloud.com/product/paas.html" }, { "name": "互动直播", css: { covBac4: true, covPic: true }, "intro": "互动直播服务是一套成熟的多操作系统、多屏、多种播放模式的中小型视频直播解决方案......", classList: { detailList_icon: true, bac4: true }, btn: "查看详情", link: "http://www.baofengcloud.com/product/ilive.html" }]
+	        };
+	    }
+	};
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"container clear\">\n    <ul class=\"detailList_intro clear\">\n        <li v-for=\"(index,list) in detailList\" v-bind:class=\"{'noBor':(index==(detailList.length-1))?true:false}\">\n            <div class=\"detailList_top\">\n                <div v-bind:class=\"list.css\"></div>\n                <div class=\"cover\"></div>\n                <div v-bind:class=\"list.classList\"></div>\n                <h3>{{list.name}}</h3>\n            </div>\n            <div class=\"detailList_bottom\">\n                {{list.intro}}\n            </div>\n            <div class=\"clear\"><a v-bind:href=\"list.link\" class=\"btn1\">{{list.btn}}</a></div>\n        </li>\n    </ul>\n</div>\n";
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(15)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src\\page\\mainList.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(16)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "./mainList.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	    data: function data() {
+	        return {
+	            mainList: [{ "css": { mainIntro_p2p: true }, title: "全球首家支持P2P加速的云视频解决方案!", detail: "更快速便捷，能够满足从个人到企业级视频应用需求，<br/>其中，智能CDN分发节点超过500个，确保“秒播”的效果；<br/>从注册到网站部署仅需三步，测试调用随时看效果；", detailBlock: { floatLeft: true, imgBac: true }, detailWrite: { floatRight: true, writeFont: true }, nextArrow: { arrow: true } }, { "css": { mainIntro_cross: true }, title: "跨平台多屏播放", detail: "提供各种操作系统（如：Windows，Android，IOS）<br/>上各种播放模式（如：客户端、Flash、HTML5、HLS）<br/>的播放器或功能性SDK。", detailBlock: { floatRight: true, imgBac: true }, detailWrite: { floatLeft: true, writeFont: true }, nextArrow: { arrow: true } }, { "css": { mainIntro_solution: true }, title: "一站式的解决方案", detail: "功能覆盖在线视频每一个环节：采集、滤镜、编码、<br/>上传、转码、存储、CDN分发、P2P加速、播放器、<br/>防盗链、安全机制、数据统计。", detailBlock: { floatLeft: true, imgBac: true }, detailWrite: { floatRight: true, writeFont: true }, nextArrow: { arrow: false } }]
+	        };
+	    }
+	};
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<ul class=\"mainIntro_list\">\n    <li v-for=\"list in mainList\" v-bind:class=\"list.css\">\n        <div class=\"container\">\n            <div v-bind:class=\"list.detailBlock\">\n            </div>\n            <div v-bind:class=\"list.detailWrite\">\n                <h3>{{list.title}}</h3>\n                <div>{{{list.detail}}}</div>\n            </div>\n            <div v-bind:class=\"list.nextArrow\"></div>\n        </div>\n    </li>\n</ul>\n";
+
+/***/ },
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	;(function () {
 
 	  var vueTouch = {}
 	  var Hammer =  true
-	    ? __webpack_require__(12)
+	    ? __webpack_require__(18)
 	    : window.Hammer
 	  var gestures = ['tap', 'pan', 'pinch', 'press', 'rotate', 'swipe']
 	  var directions = ['up', 'down', 'left', 'right', 'horizontal', 'vertical', 'all']
@@ -10610,7 +10706,7 @@ webpackJsonp([0,1],[
 
 
 /***/ },
-/* 12 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.7 - 2016-04-22
@@ -13259,7 +13355,7 @@ webpackJsonp([0,1],[
 
 
 /***/ },
-/* 13 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
