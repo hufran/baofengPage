@@ -65,8 +65,8 @@ module.exports={
                 ],"firstLink":"http://www.baofengcloud.com/product/info.html"},
                 {"firstNav":"收费标准","firstLink":"http://www.baofengcloud.com/finance/package?servicetype=1","secondNav":[
                     {"intro":"标准",content:[
-                        {"name":"点播",link:"http://www.baofengcloud.com/finance/package?servicetype=1"},
-                        {"name":"直播",link:"http://www.baofengcloud.com/finance/package?servicetype=2"}
+                        {"name":"视频点播",link:"http://www.baofengcloud.com/finance/package?servicetype=1"},
+                        {"name":"视频直播",link:"http://www.baofengcloud.com/finance/package?servicetype=2"}
                     ]}
                 ]},
                 {"firstNav":"方案","firstLink":"http://www.baofengcloud.com/cases/livebroad.html","secondNav":[

@@ -1,6 +1,6 @@
 <template>
         <ul class="mainIntro_list">
-            <li v-for="list in mainList" v-bind:class="list.css">
+            <li v-for="(index,list) in mainList" v-bind:class="list.css">
                 <div class="container">
                     <div v-bind:class="list.detailBlock">
                     </div>

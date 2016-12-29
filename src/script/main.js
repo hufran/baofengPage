@@ -7,18 +7,25 @@ webpackJsonp([0,1],[
 	var banner=__webpack_require__(6);
 	var contentList=__webpack_require__(11);
 	var mainList=__webpack_require__(14);
-	var VueTouch = __webpack_require__(17);
+	var foot=__webpack_require__(17);
+	var VueTouch = __webpack_require__(20);
 	Vue.use(VueTouch);
 	new Vue({
 		el: 'body',
-		components: { lead:Head ,banner:banner,contentList:contentList,mainList:mainList}
+		components: { lead:Head ,banner:banner,contentList:contentList,mainList:mainList,foot:foot}
 	});
 
-	var comp=__webpack_require__(19);
+	var comp=__webpack_require__(22);
 	comp.computeWidth();
 
+	var backAnimate=__webpack_require__(23);
+	backAnimate.scrollPos();
 
-
+	var introAnimate=__webpack_require__(24);
+	console.log(introAnimate);
+	introAnimate.anim('.mainIntro_p2p','anim');
+	introAnimate.anim('.mainIntro_cross','anim');
+	introAnimate.anim('.mainIntro_solution','anim');
 
 /***/ },
 /* 1 */
@@ -10324,7 +10331,7 @@ webpackJsonp([0,1],[
 	    data: function data() {
 	        return {
 	            navData: [{ "firstNav": "首页", "secondNav": [], "firstLink": "http://www.baofengcloud.com" }, { "firstNav": "产品介绍", "secondNav": [{ "intro": "介绍", "content": [{ "name": "产品概述", link: "http://www.baofengcloud.com/product/info.html" }, { "name": "点播", link: "http://www.baofengcloud.com/product/saas.html" }, { "name": "直播", link: "http://www.baofengcloud.com/product/live.html" }, { "name": "混合云", link: "http://www.baofengcloud.com/product/pcloud.html" }]
-	                }, { "intro": "更新", "content": [{ "name": "产品更新", link: "http://www.baofengcloud.com/news/list_1_1.html" }] }], "firstLink": "http://www.baofengcloud.com/product/info.html" }, { "firstNav": "收费标准", "firstLink": "http://www.baofengcloud.com/finance/package?servicetype=1", "secondNav": [{ "intro": "标准", content: [{ "name": "点播", link: "http://www.baofengcloud.com/finance/package?servicetype=1" }, { "name": "直播", link: "http://www.baofengcloud.com/finance/package?servicetype=2" }] }] }, { "firstNav": "方案", "firstLink": "http://www.baofengcloud.com/cases/livebroad.html", "secondNav": [{ "intro": "方案", content: [{ "name": "大型活动直播方案", link: "http://www.baofengcloud.com/cases/livebroad.html" }, { "name": "移动直播方案", "link": "http://www.baofengcloud.com/cases/mobilebroad.html" }, { "name": "全景视频方案", "link": "http://www.baofengcloud.com/cases/live_fmv.html" }] }, { "intro": "指南", content: [{ "name": "直播助手使用指南", link: "http://www.baofengcloud.com/cases/liveassistant.html" }, { "name": "fmle使用指南", link: "http://www.baofengcloud.com/cases/livefmle.html" }, { "name": "obs使用指南", link: "http://www.baofengcloud.com/cases/liveobs.html" }] }] }, { "firstNav": "文档中心", "firstLink": "http://www.baofengcloud.com/apisdk/safety/privatevideo.html", "secondNav": [{ "intro": "文档", content: [{ "name": "防盗链", link: "http://www.baofengcloud.com/apisdk/safety/privatevideo.html" }, { "name": "API文档", link: "http://www.baofengcloud.com/apisdk/api.html" }, { "name": "SDK文档", link: "http://www.baofengcloud.com/apisdk/sdk.html" }] }, { "intro": "下载", content: [{ "name": "资源下载", link: "http://www.baofengcloud.com/apisdk/resourcedownload.html" }] }] }, { "firstNav": "关于我们", "firstLink": "http://www.baofengcloud.com/aboutus/intro.html", "secondNav": [{ "intro": "关于", content: [{ "name": "公司介绍", link: "http://www.baofengcloud.com/aboutus/intro.html" }, { "name": "联系我们", link: "http://www.baofengcloud.com/aboutus/contact.html" }] }, { "intro": "协议", content: [{ "name": "服务协议", link: "http://www.baofengcloud.com/aboutus/services.html" }] }] }, { "firstNav": "帮助", "firstLink": "http://www.baofengcloud.com/help/quickstart.html", "secondNav": [{ "intro": "FAQ", content: [{ "name": "快速入门", link: "http://www.baofengcloud.com/help/quickstart.html" }, { "name": "注册与登录", link: "http://www.baofengcloud.com/help/regist.html" }, { "name": "常见问题", link: "http://www.baofengcloud.com/help/faq.html" }] }] }]
+	                }, { "intro": "更新", "content": [{ "name": "产品更新", link: "http://www.baofengcloud.com/news/list_1_1.html" }] }], "firstLink": "http://www.baofengcloud.com/product/info.html" }, { "firstNav": "收费标准", "firstLink": "http://www.baofengcloud.com/finance/package?servicetype=1", "secondNav": [{ "intro": "标准", content: [{ "name": "视频点播", link: "http://www.baofengcloud.com/finance/package?servicetype=1" }, { "name": "视频直播", link: "http://www.baofengcloud.com/finance/package?servicetype=2" }] }] }, { "firstNav": "方案", "firstLink": "http://www.baofengcloud.com/cases/livebroad.html", "secondNav": [{ "intro": "方案", content: [{ "name": "大型活动直播方案", link: "http://www.baofengcloud.com/cases/livebroad.html" }, { "name": "移动直播方案", "link": "http://www.baofengcloud.com/cases/mobilebroad.html" }, { "name": "全景视频方案", "link": "http://www.baofengcloud.com/cases/live_fmv.html" }] }, { "intro": "指南", content: [{ "name": "直播助手使用指南", link: "http://www.baofengcloud.com/cases/liveassistant.html" }, { "name": "fmle使用指南", link: "http://www.baofengcloud.com/cases/livefmle.html" }, { "name": "obs使用指南", link: "http://www.baofengcloud.com/cases/liveobs.html" }] }] }, { "firstNav": "文档中心", "firstLink": "http://www.baofengcloud.com/apisdk/safety/privatevideo.html", "secondNav": [{ "intro": "文档", content: [{ "name": "防盗链", link: "http://www.baofengcloud.com/apisdk/safety/privatevideo.html" }, { "name": "API文档", link: "http://www.baofengcloud.com/apisdk/api.html" }, { "name": "SDK文档", link: "http://www.baofengcloud.com/apisdk/sdk.html" }] }, { "intro": "下载", content: [{ "name": "资源下载", link: "http://www.baofengcloud.com/apisdk/resourcedownload.html" }] }] }, { "firstNav": "关于我们", "firstLink": "http://www.baofengcloud.com/aboutus/intro.html", "secondNav": [{ "intro": "关于", content: [{ "name": "公司介绍", link: "http://www.baofengcloud.com/aboutus/intro.html" }, { "name": "联系我们", link: "http://www.baofengcloud.com/aboutus/contact.html" }] }, { "intro": "协议", content: [{ "name": "服务协议", link: "http://www.baofengcloud.com/aboutus/services.html" }] }] }, { "firstNav": "帮助", "firstLink": "http://www.baofengcloud.com/help/quickstart.html", "secondNav": [{ "intro": "FAQ", content: [{ "name": "快速入门", link: "http://www.baofengcloud.com/help/quickstart.html" }, { "name": "注册与登录", link: "http://www.baofengcloud.com/help/regist.html" }, { "name": "常见问题", link: "http://www.baofengcloud.com/help/faq.html" }] }] }]
 	        };
 	    },
 	    props: {
@@ -10524,7 +10531,7 @@ webpackJsonp([0,1],[
 	module.exports = {
 	    data: function data() {
 	        return {
-	            mainList: [{ "css": { mainIntro_p2p: true }, title: "全球首家支持P2P加速的云视频解决方案!", detail: "更快速便捷，能够满足从个人到企业级视频应用需求，<br/>其中，智能CDN分发节点超过500个，确保“秒播”的效果；<br/>从注册到网站部署仅需三步，测试调用随时看效果；", detailBlock: { floatLeft: true, imgBac: true }, detailWrite: { floatRight: true, writeFont: true }, nextArrow: { arrow: true } }, { "css": { mainIntro_cross: true }, title: "跨平台多屏播放", detail: "提供各种操作系统（如：Windows，Android，IOS）<br/>上各种播放模式（如：客户端、Flash、HTML5、HLS）<br/>的播放器或功能性SDK。", detailBlock: { floatRight: true, imgBac: true }, detailWrite: { floatLeft: true, writeFont: true }, nextArrow: { arrow: true } }, { "css": { mainIntro_solution: true }, title: "一站式的解决方案", detail: "功能覆盖在线视频每一个环节：采集、滤镜、编码、<br/>上传、转码、存储、CDN分发、P2P加速、播放器、<br/>防盗链、安全机制、数据统计。", detailBlock: { floatLeft: true, imgBac: true }, detailWrite: { floatRight: true, writeFont: true }, nextArrow: { arrow: false } }]
+	            mainList: [{ "css": { mainIntro_p2p: true }, title: "全球首家支持P2P加速的云视频解决方案!", detail: "更快速便捷，能够满足从个人到企业级视频应用需求，<br/>其中，智能CDN分发节点超过500个，确保“秒播”的效果；<br/>从注册到网站部署仅需三步，测试调用随时看效果；", detailBlock: { imgBac: true }, detailWrite: { floatRight: true, writeFont: true }, nextArrow: { arrow: true } }, { "css": { mainIntro_cross: true }, title: "跨平台多屏播放", detail: "提供各种操作系统（如：Windows，Android，IOS）<br/>上各种播放模式（如：客户端、Flash、HTML5、HLS）<br/>的播放器或功能性SDK。", detailBlock: { floatRight: true, imgBac: true }, detailWrite: { writeFont: true }, nextArrow: { arrow: true } }, { "css": { mainIntro_solution: true }, title: "一站式的解决方案", detail: "功能覆盖在线视频每一个环节：采集、滤镜、编码、<br/>上传、转码、存储、CDN分发、P2P加速、播放器、<br/>防盗链、安全机制、数据统计。", detailBlock: { imgBac: true }, detailWrite: { floatRight: true, writeFont: true }, nextArrow: { arrow: false } }]
 	        };
 	    }
 	};
@@ -10533,17 +10540,69 @@ webpackJsonp([0,1],[
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<ul class=\"mainIntro_list\">\n    <li v-for=\"list in mainList\" v-bind:class=\"list.css\">\n        <div class=\"container\">\n            <div v-bind:class=\"list.detailBlock\">\n            </div>\n            <div v-bind:class=\"list.detailWrite\">\n                <h3>{{list.title}}</h3>\n                <div>{{{list.detail}}}</div>\n            </div>\n            <div v-bind:class=\"list.nextArrow\"></div>\n        </div>\n    </li>\n</ul>\n";
+	module.exports = "\n<ul class=\"mainIntro_list\">\n    <li v-for=\"(index,list) in mainList\" v-bind:class=\"list.css\">\n        <div class=\"container\">\n            <div v-bind:class=\"list.detailBlock\">\n            </div>\n            <div v-bind:class=\"list.detailWrite\">\n                <h3>{{list.title}}</h3>\n                <div>{{{list.detail}}}</div>\n            </div>\n            <div v-bind:class=\"list.nextArrow\"></div>\n        </div>\n    </li>\n</ul>\n";
 
 /***/ },
 /* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(18)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src\\page\\foot.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(19)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "./foot.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	    data: function data() {
+	        return {
+	            footData: [{ "intro": "友情链接", contents: [{ "name": "暴风影音", "link": "http://www.baofeng.com/" }] }, { "intro": "关于我们", contents: [{ "name": "公司介绍", "link": "http://www.baofengcloud.com/aboutus/intro.html" }, { "name": "服务协议", "link": "http://www.baofengcloud.com/aboutus/services.html" }] }, { "intro": "帮助", contents: [{ "name": "快速入门", "link": "http://www.baofengcloud.com/help/quickstart.html" }, { "name": "注册于登陆", "link": "http://www.baofengcloud.com/help/regist.html" }, { "name": "常见问题", "link": "http://www.baofengcloud.com/help/faq.html" }] }],
+	            contact: {
+	                "img1": "./images/weibo.png", "imgName1": "关注新浪微博", "img2": "./images/weixin.png", "imgName2": "微信", "content1": "tel：010-62309789-8118", "content2": "服务端研发QQ：2425006161", "content3": "客户端研发QQ：3096709774"
+	            }
+
+	        };
+	    }
+	};
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"container\">\n    <ul class=\"clear\">\n        <li class=\"intro\" v-for=\"data in footData\">\n            <h3>{{data.intro}}</h3>\n            <p v-for=\"list in data.contents\"><a v-bind:href=\"list.link\">{{list.name}}</a></p>\n        </li>\n        <li class=\"contentUs\">\n            <h3>联系我们</h3>\n            <div class=\"weibo\"><img v-bind:src=\"contact.img1\" v-bind:alt=\"contact.imgName1\" /><p>{{contact.imgName1}}</p></div>\n            <div class=\"wechat\"><img v-bind:src=\"contact.img2\" v-bind:alt=\"contact.imgName2\" /><p>{{contact.imgName2}}</p></div>\n            <div class=\"msg\">\n                <p>{{contact.content1}}</p>\n                <p>{{contact.content2}}</p>\n                <p>{{contact.content3}}</p>\n            </div>\n        </li>\n    </ul>\n</div>\n";
+
+/***/ },
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	;(function () {
 
 	  var vueTouch = {}
 	  var Hammer =  true
-	    ? __webpack_require__(18)
+	    ? __webpack_require__(21)
 	    : window.Hammer
 	  var gestures = ['tap', 'pan', 'pinch', 'press', 'rotate', 'swipe']
 	  var directions = ['up', 'down', 'left', 'right', 'horizontal', 'vertical', 'all']
@@ -10706,7 +10765,7 @@ webpackJsonp([0,1],[
 
 
 /***/ },
-/* 18 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.7 - 2016-04-22
@@ -13355,7 +13414,7 @@ webpackJsonp([0,1],[
 
 
 /***/ },
-/* 19 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -13380,6 +13439,53 @@ webpackJsonp([0,1],[
 	        });
 	    }
 	};
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Administrator on 2016/12/29.
+	 */
+	var $=__webpack_require__(8);
+	module.exports={
+	    scrollPos:function(){
+	        var ele=$('#videoContain'),scrollStartPos=0,scrollEndPos=0,scrollRange= 0,currentPos=0;
+	        $(document).on('scroll',function(event){
+	            currentPos=parseInt(ele.css('background-position-y'));
+	            scrollEndPos=event.target.body.scrollTop;
+	            scrollRange=Math.ceil((scrollEndPos)/5.4);
+	            $('#videoContain').css('background-position','center '+(scrollRange+'px'));
+	            scrollStartPos=scrollEndPos;
+	        });
+	    }
+	};
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Administrator on 2016/12/29.
+	 */
+	var $=__webpack_require__(8);
+	module.exports={
+	    anim:function(ele,classList){
+	        var elePos=0;
+	        ele=$(ele);
+	        elePos=ele.offset().top-parseInt(window.innerHeight);
+	        function add(event){
+	            if(event.target.body.scrollTop>=elePos){
+	                ele.find('.imgBac').addClass(classList);
+	                ele.find('.writeFont').addClass(classList);
+	                $(document).off('scroll',add);
+	            }
+	        }
+	        $(document).on('scroll',add);
+	    }
+	};
+
+
 
 /***/ }
 ]);
