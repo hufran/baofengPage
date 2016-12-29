@@ -10389,15 +10389,41 @@ webpackJsonp([0,1],[
 	            snowList: []
 	        };
 	    },
+	    computed: {
+	        bannerWidth: function bannerWidth() {
+	            return $('body').width();
+	        },
+	        bannerLength: function bannerLength() {
+	            return this.bannerData.length;
+	        },
+	        uiWidth: function uiWidth() {
+	            return this.bannerWidth * this.bannerLength + "px";
+	        },
+	        liWidth: function liWidth() {
+	            return this.bannerWidth + "px";
+	        }
+	    },
 	    methods: {
-	        scrollLeft: function scrollLeft(pos) {
+	        onPan: function onPan(event) {
+	            console.log(event);alert("pan");
+	        },
+	        scrollLeft: function scrollLeft(pos, event) {
+	            console.log(event);
+	            var rangeLeft = event.deltaX;
 	            if (pos < this.bannerData.length) {
-	                alert(1);
+
+	                alert("left");
 	            }
 	        },
-	        scrollRight: function scrollRight(pos) {},
+	        scrollRight: function scrollRight(pos, event) {
+	            console.log(event);
+	            alert("right");
+	        },
 	        scrollPos: function scrollPos(pos) {},
 	        autoScroll: function autoScroll(pos) {},
+	        computeWidth: function computeWidth() {
+	            return { width: width * length + 'px' };
+	        },
 	        randomPos: function randomPos() {
 	            function randomPox() {
 	                var width = parseInt($('body').width());
@@ -10444,7 +10470,7 @@ webpackJsonp([0,1],[
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"bannerChange\">\n    {{randomPos()}}\n    <ul class=\"bannerGroup\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:swipeleft=\"scrollLeft\" v-touch:swiperight=\"scrollRight\" v-bind:class=\"data.classList\" >\n            <div class=\"container\">\n                <h2>{{data.title}}</h2>\n                <div class=\"describe\">{{data.describe}}</div>\n                <div v-if=\"data.animate\" class=\"snowAnimate\">\n                    <span v-for=\"list in snowList\" v-bind:class=\"list.class\" v-bind:style=\"{left:list.posX}\"></span>\n                </div>\n                <div v-bind:class=\"data.btnClass\"><a v-bind:href=\"data.link\">{{data.btn}}<i></i></a></div>\n            </div>\n        </li>\n    </ul>\n    <ul class=\"pointGroup container\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:tap=\"scrollPos\" v-bind:class=\"{cur:data.classList.cur,mrg0:(index==bannerData.length-1)?true:false}\"></li>\n    </ul>\n</div>\n\n";
+	module.exports = "\n<div class=\"bannerChange\">\n    {{randomPos()}}\n    <ul class=\"bannerGroup\" v-bind:style=\"{width:uiWidth}\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:pan=\"onPan($event)\" v-bind:class=\"data.classList\" v-bind:style=\"{width:liWidth}\">\n            <div class=\"container\">\n                <h2>{{data.title}}</h2>\n                <div class=\"describe\">{{data.describe}}</div>\n                <div v-if=\"data.animate\" class=\"snowAnimate\">\n                    <span v-for=\"list in snowList\" v-bind:class=\"list.class\" v-bind:style=\"{left:list.posX}\"></span>\n                </div>\n                <div v-bind:class=\"data.btnClass\"><a v-bind:href=\"data.link\">{{data.btn}}<i></i></a></div>\n            </div>\n        </li>\n    </ul>\n    <ul class=\"pointGroup container\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:tap=\"scrollPos\" v-bind:class=\"{cur:data.classList.cur,mrg0:(index==bannerData.length-1)?true:false}\"></li>\n    </ul>\n</div>\n\n";
 
 /***/ },
 /* 11 */

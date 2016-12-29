@@ -1,8 +1,8 @@
 <template>
     <div class="bannerChange">
         {{randomPos()}}
-        <ul class="bannerGroup">
-            <li v-for="(index,data) in bannerData" v-touch:swipeleft="scrollLeft" v-touch:swiperight="scrollRight" v-bind:class="data.classList" >
+        <ul class="bannerGroup" v-bind:style="{width:uiWidth}">
+            <li v-for="(index,data) in bannerData" v-touch:pan="onPan($event)" v-bind:class="data.classList" v-bind:style="{width:liWidth}">
                 <div class="container">
                     <h2>{{data.title}}</h2>
                     <div class="describe">{{data.describe}}</div>
@@ -31,20 +31,45 @@
                 snowList:[]
             }
         },
+        computed:{
+            bannerWidth:function(){
+                return ($('body').width());
+            },
+            bannerLength:function(){
+                return (this.bannerData.length);
+            },
+            uiWidth:function(){
+                return this.bannerWidth*this.bannerLength+"px";
+            },
+            liWidth:function(){
+                return this.bannerWidth+"px";
+            }
+        },
         methods:{
-            scrollLeft:function(pos){
+            onPan:function(event){
+                console.log(event);alert("pan");
+            },
+            scrollLeft:function(pos,event){
+                console.log(event);
+                var rangeLeft=event.deltaX;
                 if(pos<this.bannerData.length){
-                    alert(1);
+
+
+                    alert("left");
                 }
             },
-            scrollRight:function(pos){
-
+            scrollRight:function(pos,event){
+                console.log(event);
+                alert("right");
             },
             scrollPos:function(pos){
 
             },
             autoScroll:function(pos){
 
+            },
+            computeWidth:function(){
+                return {width:(width*length)+'px'};
             },
             randomPos:function(){
                 function randomPox(){
