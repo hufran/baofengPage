@@ -2,7 +2,7 @@
     <div class="bannerChange">
         {{randomPos()}}
         <ul class="bannerGroup" v-bind:style="{width:uiWidth}">
-            <li v-for="(index,data) in bannerData" v-touch:pan="onPan($event)" v-bind:class="data.classList" v-bind:style="{width:liWidth}">
+            <li v-for="(index,data) in bannerData" v-touch:pan="onPan($event,index)" v-bind:class="data.classList" v-bind:style="{width:liWidth,margin-left:leftPos}">
                 <div class="container">
                     <h2>{{data.title}}</h2>
                     <div class="describe">{{data.describe}}</div>
@@ -28,7 +28,8 @@
                     {"title":"全球最省成本在线视频解决方案","describe":"为用户提供高效点播、直播等业务的一站式解决方案",classList:{cur:true,banner1:true},animate:true,link:"http://www.baofengcloud.com/product/info.html",btn:"查看详情",btnClass:{btn1:true}},
                     {"title":"套餐流量低至9折起，赠送更大存储空间","describe":"降低IT成本，加快产品周期，消灭技术难题",classList:{cur:false,banner2:true},cur:false,animate:false,link:"http://www.baofengcloud.com/finance/package?servicetype=1",btn:"立即查看",btnClass:{btn2:true}}
                 ],
-                snowList:[]
+                snowList:[],
+                leftPos:0
             }
         },
         computed:{
@@ -46,24 +47,44 @@
             }
         },
         methods:{
-            onPan:function(event){
-                console.log(event);alert("pan");
-            },
-            scrollLeft:function(pos,event){
-                console.log(event);
-                var rangeLeft=event.deltaX;
-                if(pos<this.bannerData.length){
-
-
-                    alert("left");
+            onPan:function(event,index){
+                var rangeLeft=event.deltaX,decorate="",currentPos;
+                currentPos=parseInt(this.leftPos);
+                this.leftPos=parseInt(this.leftPos)+rangeLeft;
+                if(rangeLeft>0){
+                    decorate="right";
+                }else if(rangeLeft<0){
+                    decorate="left";
                 }
-            },
-            scrollRight:function(pos,event){
-                console.log(event);
-                alert("right");
-            },
-            scrollPos:function(pos){
+                if(rangeLeft>liWidth/3){
+                    this.scrollPos(index,decorate);
+                }else if(rangeLeft<-liWidth/3){
+                    this.scrollPos(index,decorate);
+                }else if(rangeLeft>=0&&rangeLeft<=liWidth/3){
+                    this.leftPos=currentPos+"px";
+                }else if(rangeLeft<0&&rangeLeft>=-liWidth/3){
+                    this.leftPos=currentPos+"px"
+                }
 
+            },
+            scrollPos:function(pos,decoration){
+                if(pos<this.bannerLength){
+                    if(decoration=="left"){
+                        if(pos+1>=this.bannerLength){
+                            pos=0;
+                            this.leftPos=0+"px";
+                        }else{
+                            this.leftPos=(this.leftPos+liWidth)+"px";
+                        }
+                    }
+                    if(decoration=="right"){
+                        if(pos-1<0){
+                            this.leftPos=pos*liWidth+"px";
+                        }else{
+                            this.leftPos=(this.leftPos-liWidth)+"px";
+                        }
+                    }
+                }
             },
             autoScroll:function(pos){
 
