@@ -22,7 +22,6 @@ webpackJsonp([0,1],[
 	backAnimate.scrollPos();
 
 	var introAnimate=__webpack_require__(24);
-	console.log(introAnimate);
 	introAnimate.anim('.mainIntro_p2p','anim');
 	introAnimate.anim('.mainIntro_cross','anim');
 	introAnimate.anim('.mainIntro_solution','anim');
@@ -10387,7 +10386,10 @@ webpackJsonp([0,1],[
 	        return {
 	            bannerData: [{ "title": "全球最省成本在线视频解决方案", "describe": "为用户提供高效点播、直播等业务的一站式解决方案", classList: { cur: true, banner1: true }, animate: true, link: "http://www.baofengcloud.com/product/info.html", btn: "查看详情", btnClass: { btn1: true } }, { "title": "套餐流量低至9折起，赠送更大存储空间", "describe": "降低IT成本，加快产品周期，消灭技术难题", classList: { cur: false, banner2: true }, cur: false, animate: false, link: "http://www.baofengcloud.com/finance/package?servicetype=1", btn: "立即查看", btnClass: { btn2: true } }],
 	            snowList: [],
-	            leftPos: 0
+	            leftPos: 0,
+	            currentPos: 0,
+	            move: false,
+	            timeuid: null
 	        };
 	    },
 	    computed: {
@@ -10407,43 +10409,104 @@ webpackJsonp([0,1],[
 	    methods: {
 	        onPan: function onPan(event, index) {
 	            var rangeLeft = event.deltaX,
-	                decorate = "",
-	                currentPos;
-	            currentPos = parseInt(this.leftPos);
-	            this.leftPos = parseInt(this.leftPos) + rangeLeft;
-	            if (rangeLeft > 0) {
-	                decorate = "right";
-	            } else if (rangeLeft < 0) {
-	                decorate = "left";
+	                liWidthVal = parseInt(this.liWidth) / 3;
+	            this.leftPos = parseInt(this.leftPos) - this.currentPos + rangeLeft + "px";
+	            this.move = false;
+	            if (-liWidthVal > rangeLeft && rangeLeft < 0) {
+	                this.move = true;
+	                this.scrollPos(index, "left");return;
+	            } else if (rangeLeft > liWidthVal && rangeLeft > 0) {
+	                this.scrollPos(index, "right");
+	                this.move = true;
+	                return;
 	            }
-	            if (rangeLeft > liWidth / 3) {
-	                this.scrollPos(index, decorate);
-	            } else if (rangeLeft < -liWidth / 3) {
-	                this.scrollPos(index, decorate);
-	            } else if (rangeLeft >= 0 && rangeLeft <= liWidth / 3) {
-	                this.leftPos = currentPos + "px";
-	            } else if (rangeLeft < 0 && rangeLeft >= -liWidth / 3) {
-	                this.leftPos = currentPos + "px";
+	            this.currentPos = rangeLeft;
+	        },
+	        onSwipe: function onSwipe(event, index) {
+	            var rangeLeft = event.deltaX,
+	                liWidthVal = parseInt(this.liWidth) / 3;;
+	            if (-liWidthVal > rangeLeft && rangeLeft < 0 && !this.move) {
+	                this.scrollPos(index, "left");
+	            } else if (rangeLeft > liWidthVal && rangeLeft > 0 && !this.move) {
+	                this.scrollPos(index, "right");
+	            } else if (rangeLeft < 0 && rangeLeft > -liWidthVal || rangeLeft > 0 && rangeLeft < liWidthVal) {
+	                this.leftPos = -index * parseInt(this.liWidth);
+	                this.leftPos = this.leftPos + "px";
 	            }
+	            this.currentPos = 0;
 	        },
 	        scrollPos: function scrollPos(pos, decoration) {
+	            this.leftPos = parseInt(this.leftPos);
 	            if (pos < this.bannerLength) {
 	                if (decoration == "left") {
 	                    if (pos + 1 >= this.bannerLength) {
 	                        pos = 0;
-	                        this.leftPos = 0 + "px";
+	                        this.animateFrame(this.leftPos, 0);
+
+	                        this.setCur(pos);
 	                    } else {
-	                        this.leftPos = this.leftPos + liWidth + "px";
+	                        this.animateFrame(this.leftPos, -(pos + 1) * parseInt(this.liWidth));
+
+	                        this.setCur(pos + 1);
 	                    }
 	                }
 	                if (decoration == "right") {
 	                    if (pos - 1 < 0) {
-	                        this.leftPos = pos * liWidth + "px";
+	                        this.animateFrame(this.leftPos, -(this.bannerLength - 1) * parseInt(this.liWidth));
+
+	                        this.setCur(this.bannerLength - 1);
 	                    } else {
-	                        this.leftPos = this.leftPos - liWidth + "px";
+	                        this.animateFrame(this.leftPos, -(pos - 1) * parseInt(this.liWidth));
+
+	                        this.setCur(pos - 1);
 	                    }
 	                }
+	                this.leftPos = this.leftPos + "px";
 	            }
+	        },
+	        animateFrame: function animateFrame(startPos, endPos) {
+	            clearInterval(this.timeuid);
+	            var self = this,
+	                timeRange = 0;
+
+	            console.log("startPos:" + startPos + " endPos:" + endPos);
+	            if (startPos > endPos) {
+	                var posChange = function posChange() {
+	                    startPos -= timeRange;
+	                    self.leftPos = startPos + "px";
+	                    if (startPos <= endPos) {
+	                        self.leftPos = startPos = endPos + "px";
+	                        clearInterval(self.timeuid);
+	                        return;
+	                    }
+	                    console.log("leftPos:" + self.leftPos);
+	                };
+
+	                timeRange = Math.ceil((startPos - endPos) / 40);
+
+	                self.timeuid = setInterval(posChange, 10);
+	            } else if (startPos < endPos) {
+	                var _posChange = function _posChange() {
+	                    startPos += timeRange;
+	                    self.leftPos = startPos + "px";
+	                    if (startPos >= endPos) {
+	                        self.leftPos = startPos = endPos + "px";
+	                        clearInterval(self.timeuid);
+	                        return;
+	                    }
+	                    console.log("leftPos:" + self.leftPos);
+	                };
+
+	                timeRange = Math.ceil((endPos - startPos) / 40);
+
+	                self.timeuid = setInterval(_posChange, 10);
+	            }
+	        },
+	        setCur: function setCur(pos) {
+	            for (var i = 0; i < this.bannerLength; i++) {
+	                this.bannerData[i].classList["cur"] = false;
+	            }
+	            this.bannerData[pos].classList["cur"] = true;
 	        },
 	        autoScroll: function autoScroll(pos) {},
 	        computeWidth: function computeWidth() {
@@ -10495,7 +10558,7 @@ webpackJsonp([0,1],[
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "\n<div class=\"bannerChange\">\n    {{randomPos()}}\n    <ul class=\"bannerGroup\" v-bind:style=\"{width:uiWidth}\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:pan=\"onPan($event,index)\" v-bind:class=\"data.classList\" v-bind:style=\"{width:liWidth,margin-left:leftPos}\">\n            <div class=\"container\">\n                <h2>{{data.title}}</h2>\n                <div class=\"describe\">{{data.describe}}</div>\n                <div v-if=\"data.animate\" class=\"snowAnimate\">\n                    <span v-for=\"list in snowList\" v-bind:class=\"list.class\" v-bind:style=\"{left:list.posX}\"></span>\n                </div>\n                <div v-bind:class=\"data.btnClass\"><a v-bind:href=\"data.link\">{{data.btn}}<i></i></a></div>\n            </div>\n        </li>\n    </ul>\n    <ul class=\"pointGroup container\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:tap=\"scrollPos\" v-bind:class=\"{cur:data.classList.cur,mrg0:(index==bannerData.length-1)?true:false}\"></li>\n    </ul>\n</div>\n\n";
+	module.exports = "\n<div class=\"bannerChange\">\n    {{randomPos()}}\n    <ul class=\"bannerGroup\" v-bind:style=\"{width:uiWidth,'margin-left':leftPos}\">\n        <li v-for=\"(index,data) in bannerData\"  v-touch:pan=\"onPan($event,index)\" v-touch:panend=\"onSwipe($event,index)\" v-bind:class=\"data.classList\" v-bind:style=\"{width:liWidth}\">\n            <div class=\"container\">\n                <h2>{{data.title}}</h2>\n                <div class=\"describe\">{{data.describe}}</div>\n                <div v-if=\"data.animate\" class=\"snowAnimate\">\n                    <span v-for=\"list in snowList\" v-bind:class=\"list.class\" v-bind:style=\"{left:list.posX}\"></span>\n                </div>\n                <div v-bind:class=\"data.btnClass\"><a v-bind:href=\"data.link\">{{data.btn}}<i></i></a></div>\n            </div>\n        </li>\n    </ul>\n    <ul class=\"pointGroup container\">\n        <li v-for=\"(index,data) in bannerData\" v-touch:tap=\"scrollPos\" v-bind:class=\"{cur:data.classList.cur,mrg0:(index==bannerData.length-1)?true:false}\"></li>\n    </ul>\n</div>\n\n";
 
 /***/ },
 /* 11 */

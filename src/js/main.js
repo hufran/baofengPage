@@ -18,7 +18,6 @@ var backAnimate=require("./view/backAnimate.js");
 backAnimate.scrollPos();
 
 var introAnimate=require("./view/introAnimate.js");
-console.log(introAnimate);
 introAnimate.anim('.mainIntro_p2p','anim');
 introAnimate.anim('.mainIntro_cross','anim');
 introAnimate.anim('.mainIntro_solution','anim');
